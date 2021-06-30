@@ -157,8 +157,10 @@ jobs:
           curl -sSL $WIN_UPDATE | grep "0.0.0.0" | awk '{print $2}' > win-update.txt
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > ./community/data/win-extra
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > win-extra.txt
-          curl -sSL $CHNROUTE | grep CN | grep ipv4 | awk -F'|' '{printf("add chnroute %s/%d\n", $4, 32-log($5)/log(2))}' > chnroute.ipset
-          curl -sSL $CHNROUTE | grep CN | grep ipv6 | awk -F'|' '{printf("add chnroute6 %s/%d\n", $4, $5)}' > chnroute6.ipset
+          echo "create chnroute hash:net family inet" > chnroute.ipset
+          curl -sSL $CHNROUTE | grep CN | grep ipv4 | awk -F'|' '{printf("add chnroute %s/%d\n", $4, 32-log($5)/log(2))}' >> chnroute.ipset
+          echo "create chnroute6 hash:net family inet6" > chnroute6.ipset
+          curl -sSL $CHNROUTE | grep CN | grep ipv6 | awk -F'|' '{printf("add chnroute6 %s/%d\n", $4, $5)}' >> chnroute6.ipset
       - name: Build geosite.dat file
         run: |
           cd custom || exit 1
