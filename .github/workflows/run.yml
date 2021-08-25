@@ -36,7 +36,9 @@ jobs:
           echo "WIN_SPY=https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt" >> $GITHUB_ENV
           echo "WIN_UPDATE=https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/update.txt" >> $GITHUB_ENV
           echo "WIN_EXTRA=https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/extra.txt" >> $GITHUB_ENV
-          echo "CHNROUTE=https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" >> $GITHUB_ENV
+          echo "CHNROUTE=https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute.txt" >> $GITHUB_ENV
+          echo "CHNROUTE6=https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute-v6.txt" >> $GITHUB_ENV
+        # echo "CHNROUTE=https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the "hidden" branch of this repo
@@ -157,10 +159,14 @@ jobs:
           curl -sSL $WIN_UPDATE | grep "0.0.0.0" | awk '{print $2}' > win-update.txt
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > ./community/data/win-extra
           curl -sSL $WIN_EXTRA | grep "0.0.0.0" | awk '{print $2}' > win-extra.txt
+      - name: Create `chnroute`、`chnroute6` ipset file
+        run: |
           echo "create chnroute hash:net family inet" > chnroute.ipset
-          curl -sSL $CHNROUTE | grep CN | grep ipv4 | awk -F'|' '{printf("add chnroute %s/%d\n", $4, 32-log($5)/log(2))}' >> chnroute.ipset
+          curl -sSL $CHNROUTE | sed 's/^/add chnroute /' >> chnroute.ipset
           echo "create chnroute6 hash:net family inet6" > chnroute6.ipset
-          curl -sSL $CHNROUTE | grep CN | grep ipv6 | awk -F'|' '{printf("add chnroute6 %s/%d\n", $4, $5)}' >> chnroute6.ipset
+          curl -sSL $CHNROUTE6 | sed 's/^/add chnroute6 /' >> chnroute6.ipset
+        # curl -sSL $CHNROUTE | grep CN | grep ipv6 | awk -F'|' '{printf("add chnroute6 %s/%d\n", $4, $5)}' >> chnroute6.ipset
+        # curl -sSL $CHNROUTE | grep CN | grep ipv4 | awk -F'|' '{printf("add chnroute %s/%d\n", $4, 32-log($5)/log(2))}' >> chnroute.ipset
       - name: Build geosite.dat file
         run: |
           cd custom || exit 1
