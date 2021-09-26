@@ -9,7 +9,7 @@
 - [`geosite.dat`](https://raw.githubusercontent.com/ngbs/rules-dat/release/geosite.dat)
 - [`chnroute.ipset`](https://raw.githubusercontent.com/ngbs/rules-dat/release/chnroute.ipset)
 - [`chnroute6.ipset`](https://raw.githubusercontent.com/ngbs/rules-dat/release/chnroute6.ipset)
-- [`gfw.txt`](https://raw.githubusercontent.com/ngbs/rules-dat/release/gfwlist/gfw.txt)
+- [`gfw.txt`](https://raw.githubusercontent.com/ngbs/rules-dat/release/gfw.txt)
 - [`google-cn.txt`](https://raw.githubusercontent.com/ngbs/rules-dat/release/google-cn.txt)
 - [`apple-cn.txt`](https://raw.githubusercontent.com/ngbs/rules-dat/release/apple-cn.txt)
 - [`greatfire.txt`](https://raw.githubusercontent.com/ngbs/rules-dat/release/greatfire.txt)
