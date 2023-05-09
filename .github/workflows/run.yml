@@ -37,7 +37,7 @@ jobs:
           echo "WIN_UPDATE=https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/update.txt" >> $GITHUB_ENV
           echo "WIN_EXTRA=https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/extra.txt" >> $GITHUB_ENV
           echo "CHNROUTE=https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute.txt" >> $GITHUB_ENV
-          echo "CHNROUTE6=https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute-v6.txt" >> $GITHUB_ENV
+          echo "CHNROUTE6=https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute6.txt" >> $GITHUB_ENV
         # echo "CHNROUTE=https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" >> $GITHUB_ENV
         shell: bash
 
